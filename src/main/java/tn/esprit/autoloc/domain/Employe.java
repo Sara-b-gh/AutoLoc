@@ -6,26 +6,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Paiement {
+public class Employe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPaiement;
+    private Long idEmploye;
 
-    @Column(nullable = false, length = 20)
-    private BigDecimal montant ;
+    @Column(nullable = false, length = 50)
+    private String nom;
 
-    @Column(nullable = false)
-    private LocalDate datePaiement;
+    @Column(nullable = false, length = 50)
+    private String prenom;
 
     @Enumerated(EnumType.STRING)
-    private ModePaiement modePaiement;
-
+    @Column(nullable = false, length = 20)
+    private RoleEmploye role;
 
 }

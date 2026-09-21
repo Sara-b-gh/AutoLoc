@@ -8,24 +8,25 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Paiement {
+public class Contract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPaiement;
-
-    @Column(nullable = false, length = 20)
-    private BigDecimal montant ;
+    Long idContract;
 
     @Column(nullable = false)
-    private LocalDate datePaiement;
+    LocalDate dateSignature;
 
-    @Enumerated(EnumType.STRING)
-    private ModePaiement modePaiement;
+    @Column(nullable = false, length = 20)
+    BigDecimal montantTotal;
+
+    @Column(nullable = false)
+    boolean valide;
 
 
 }
