@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -27,6 +29,12 @@ public class Contract {
 
     @Column(nullable = false)
     boolean valide;
+
+    @OneToOne(mappedBy = "contract")
+    Reservation reservation;
+
+    @OneToMany(mappedBy = "contract",cascade = CascadeType.ALL )
+    List<Paiement> paiements =new ArrayList<>();
 
 
 }

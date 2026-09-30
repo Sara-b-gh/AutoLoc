@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.time.LocalDate;
 
 @Entity
@@ -26,5 +25,9 @@ public class Maintenance {
 
     @Column(nullable = false)
     String Description;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "vehicule_id")
+    Vehicule vehicule;
 
 }
