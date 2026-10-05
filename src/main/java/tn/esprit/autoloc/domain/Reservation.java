@@ -14,17 +14,17 @@ import java.time.LocalDate;
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idReservation;
+    private Long idReservation;
 
     @Column(nullable = false)
-    LocalDate dateDebut;
+    private LocalDate dateDebut;
 
     @Column(nullable = false)
-    LocalDate dateFin;
+    private LocalDate dateFin;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
-    StatutReservation statut;
+    private StatutReservation statut;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "contrat_id")

@@ -15,10 +15,10 @@ import java.time.LocalDate;
 public class Maintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idMaintenance;
+    private Long idMaintenance;
 
     @Column(nullable = false)
-    LocalDate dateDebut;
+    private LocalDate dateDebut;
 
     @Column(nullable = false)
     LocalDate dateFin;
