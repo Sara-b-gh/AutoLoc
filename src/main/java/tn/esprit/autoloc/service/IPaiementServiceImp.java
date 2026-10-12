@@ -3,40 +3,43 @@ package tn.esprit.autoloc.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.autoloc.domain.Maintenance;
+import tn.esprit.autoloc.domain.Paiement;
 import tn.esprit.autoloc.repository.MaintenanceRepository;
+import tn.esprit.autoloc.repository.PaiementRepository;
 
 import java.util.List;
 
 @Service
 @AllArgsConstructor
 
-public class IPaiementServiceImp implements IMaintenanceService {
+public class IPaiementServiceImp implements IPaiementService {
 
-    private final MaintenanceRepository maintenanceRepository;
+
+    private final PaiementRepository paiementRepository;
 
     @Override
-    public Maintenance ajouterMaintenance(Maintenance maintenance) {
-        return maintenanceRepository.save(maintenance);
+    public Paiement ajouterPaiement(Paiement paiement) {
+        return paiementRepository.save(paiement);
     }
 
     @Override
-    public Maintenance modifierMaintenance(Maintenance maintenance) {
-        return maintenanceRepository.save(maintenance);
+    public Paiement modifierPaiement(Paiement paiement) {
+        return paiementRepository.save(paiement);
     }
 
     @Override
-    public List<Maintenance> afficherToutesMaintenance() {
-        return maintenanceRepository.findAll();
+    public List<Paiement> afficherToutesPaiement() {
+        return paiementRepository.findAll();
     }
 
     @Override
-    public Maintenance afficherMaintenanceById(Long id) {
-        return maintenanceRepository.findById(id).orElse(null);
+    public Paiement afficherPaiementById(Long id) {
+        return paiementRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void supprimerMaintenance(Long id) {
-        maintenanceRepository.deleteById(id);
+    public void supprimerPaiement(Long id) {
+        paiementRepository.deleteById(id);
 
     }
 }
