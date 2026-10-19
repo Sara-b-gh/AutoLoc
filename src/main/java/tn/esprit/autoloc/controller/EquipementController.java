@@ -38,7 +38,7 @@ public class EquipementController {
         equipementService.supprimerEquipement(idEquipement);
     }
 
-    @Operation(summary = "afficher toutes les equipements")
+    @Operation(summary = "afficher tous les equipements")
     @GetMapping("/afficherToutesEquipements")
     public List<Equipement> getAllEquipement(){
         return equipementService.afficherToutesEquipement();

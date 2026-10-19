@@ -39,7 +39,7 @@ public class ClientController {
         clientService.supprimerClient(idClient);
     }
 
-    @Operation(summary = "afficher toutes les clients")
+    @Operation(summary = "afficher tous les clients")
     @GetMapping("/afficherToutesClients")
     public List<Client> getAllClients(){
         return clientService.afficherToutesClient();

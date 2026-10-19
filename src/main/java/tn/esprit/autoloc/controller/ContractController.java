@@ -37,7 +37,7 @@ public class ContractController {
         contractService.supprimerContract(idContract);
     }
 
-    @Operation(summary = "afficher toutes les contrats")
+    @Operation(summary = "afficher tous les contrats")
     @GetMapping("/afficherToutesContracts")
     public List<Contract> getAllContract(){
         return contractService.afficherToutesContracts();

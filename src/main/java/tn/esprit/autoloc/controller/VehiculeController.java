@@ -38,7 +38,7 @@ public class VehiculeController {
         vehiculeService.supprimerVehicule(idVehicule);
     }
 
-    @Operation(summary = "afficher toutes les vehicules")
+    @Operation(summary = "afficher tous les vehicules")
     @GetMapping("/afficherToutesVehicules")
     public List<Vehicule> getAllVehicules(){
         return vehiculeService.afficherToutesVehicule();

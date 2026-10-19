@@ -38,7 +38,7 @@ public class PaiementController {
         paiementService.supprimerPaiement(idPaiement);
     }
 
-    @Operation(summary = "afficher toutes les paiements")
+    @Operation(summary = "afficher tous les paiements")
     @GetMapping("/afficherToutesPaiements")
     public List<Paiement> getAllPaiement(){
         return paiementService.afficherToutesPaiement();

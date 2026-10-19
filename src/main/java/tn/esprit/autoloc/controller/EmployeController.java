@@ -39,7 +39,7 @@ public class EmployeController {
         employeService.supprimerEmploye(idEmploye);
     }
 
-    @Operation(summary = "afficher toutes les employes")
+    @Operation(summary = "afficher tous les employes")
     @GetMapping("/afficherToutesEmployes")
     public List<Employe> getAllEmploye(){
         return employeService.afficherToutesEmploye();
