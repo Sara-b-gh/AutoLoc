@@ -1,5 +1,7 @@
 package tn.esprit.autoloc.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.autoloc.domain.Equipement;
@@ -10,33 +12,39 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/equipement")
+@Tag(name ="gestion de equipements", description = "CRUD")
 
 public class EquipementController {
     private final IEquipementService equipementService;
 
+    @Operation(summary = "ajouter un equipement")
     @PostMapping("/ajouterEquipement")
     public Equipement ajouterEquipement(@RequestBody Equipement equipement)
     {
         return equipementService.ajouterEquipement(equipement);
     }
 
+    @Operation(summary = "modifier un equipement")
     @PutMapping("/modifierEquipement")
     public Equipement modifierEquipement(@RequestBody Equipement equipement)
     {
         return equipementService.modifierEquipement(equipement);
     }
 
+    @Operation(summary = "supprimer un equipement")
     @DeleteMapping("/supprimerEquipement/{idEquipement}")
     public void supprimerEquipement(@PathVariable Long idEquipement)
     {
         equipementService.supprimerEquipement(idEquipement);
     }
 
+    @Operation(summary = "afficher toutes les equipements")
     @GetMapping("/afficherToutesEquipements")
     public List<Equipement> getAllEquipement(){
         return equipementService.afficherToutesEquipement();
     }
 
+    @Operation(summary = "trouver un equipement par id")
     @GetMapping("/afficherEquipementById/{id}")
     public Equipement getEquipementById(@PathVariable Long id)
     {
