@@ -3,6 +3,7 @@ package tn.esprit.autoloc.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.autoloc.domain.Vehicule;
 import tn.esprit.autoloc.service.IVehiculeService;
@@ -50,4 +51,17 @@ public class VehiculeController {
     {
         return vehiculeService.afficherVehiculeById(id);
     }
+
+    @Operation(summary = "affecter un équipements à un vehicule")
+    @PutMapping("/affecterEquipement/{idVehicule}/{idEquipement}")
+    public Vehicule affecterEquipement(@PathVariable Long idVehicule,@PathVariable Long idEquipement){
+    return vehiculeService.affecterEquipement(idVehicule,idEquipement);
+    }
+
+    @Operation(summary = "desaffecter un équipements à un vehicule")
+    @PutMapping("/desaffecterEquipement/{idVehicule}/{idEquipement}")
+    public     Vehicule desaffecterEquipement(Long idVehicule, Long idEquipement){
+        return vehiculeService.desaffecterEquipement(idVehicule,idEquipement);
+    }
 }
+

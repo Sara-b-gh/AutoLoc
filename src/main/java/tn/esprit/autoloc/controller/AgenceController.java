@@ -50,4 +50,11 @@ public class AgenceController {
         return agenceService.afficherAgenceById(id);
     }
 
+    @Operation(summary = "ajouter une agence avec ses vehicules")
+    @PostMapping ("/ajouterAgenceEtAffecterVehicules")
+    public Agence ajouterAgenceEtAffecterVehicules(@RequestBody Agence agence){
+        return agenceService.ajouterAgenceEtAffecterVehicules(agence);
+    }
+
+
 }
