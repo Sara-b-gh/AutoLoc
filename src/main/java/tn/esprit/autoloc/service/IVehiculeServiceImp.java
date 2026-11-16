@@ -35,9 +35,15 @@ public class IVehiculeServiceImp implements IVehiculeService{
         return vehiculeRepository.findAll();
     }
 
+//    @Override
+//    public Vehicule afficherVehiculeById(Long idVehicule) {
+//        return vehiculeRepository.findById(idVehicule).orElse(null);
+//    }
     @Override
-    public Vehicule afficherVehiculeById(Long idVehicule) {
-        return vehiculeRepository.findById(idVehicule).orElse(null);
+    public Vehicule afficherVehiculeById(Long id) {
+        return vehiculeRepository.findById(id)
+              .orElseThrow(() ->
+                        new RuntimeException("Véhicule introuvable"));
     }
 
     @Override
