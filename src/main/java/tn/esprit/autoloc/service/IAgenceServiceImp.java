@@ -66,6 +66,16 @@ public class IAgenceServiceImp implements IAgenceService{
         return agenceSauvegarde;
     }
 
+    @Override
+    public List<Agence> retournerAgencesParVille(String ville) {
+        return agenceRepository.findByVille(ville);
+    }
+
+    @Override
+    public List<Agence> retournerAgencesParNomTerminePar(String nom) {
+        return agenceRepository.findByNomEndingWith(nom);
+    }
+
 
     @Scheduled(fixedDelay = 2, timeUnit = TimeUnit.MINUTES)
     public void suivreNombreAgences() {

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import tn.esprit.autoloc.domain.Maintenance;
 import tn.esprit.autoloc.repository.MaintenanceRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -35,6 +36,12 @@ public class IMaintenanceServiceImp implements IMaintenanceService{
     @Override
     public void supprimerMaintenance(Long id) {
         maintenanceRepository.deleteById(id);
+
+    }
+
+    @Override
+    public List<Maintenance> retournerMaintenancesEntreDeuxDates(LocalDate dateDebut, LocalDate dateFin) {
+        return maintenanceRepository.findByDateFinBetween(dateDebut, dateFin);
 
     }
 }

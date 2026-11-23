@@ -4,11 +4,14 @@ import lombok.AllArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tn.esprit.autoloc.domain.CategorieVehicule;
 import tn.esprit.autoloc.domain.Equipement;
+import tn.esprit.autoloc.domain.StatutVehicule;
 import tn.esprit.autoloc.domain.Vehicule;
 import tn.esprit.autoloc.repository.EquipementRepository;
 import tn.esprit.autoloc.repository.VehiculeRepository;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -68,6 +71,75 @@ public class IVehiculeServiceImp implements IVehiculeService{
         vehicule.getEquipements().removeIf(e->e.getIdEquipement().equals(idEquipement));
         return vehiculeRepository.save(vehicule);
     }
+
+    @Override
+    public List<Vehicule> retournerVehiculesParMarque(String m) {
+        return vehiculeRepository.findByMarque(m);
+    }
+
+    @Override
+    public List<Vehicule> retournerVehiculesParCategorie(CategorieVehicule categorie) {
+        return vehiculeRepository.findByCategorie(categorie);
+    }
+
+    @Override
+    public List<Vehicule> retournerVehiculesParStatut(StatutVehicule statut) {
+        return vehiculeRepository.findByStatut(statut);
+    }
+
+    @Override
+    public List<Vehicule> retournerVehiculesParMarqueContenant(String marque) {
+        return vehiculeRepository.findByMarqueContaining(marque);
+    }
+
+    @Override
+    public List<Vehicule> retournerVehiculesParModeleCommencantPar(String modele) {
+        return vehiculeRepository.findByModeleStartingWith(modele);
+    }
+
+    @Override
+    public List<Vehicule> retournerVehiculesParTarifSuperieur(BigDecimal tarif) {
+        return vehiculeRepository.findByTarifJournalierGreaterThan(tarif);
+
+    }
+
+    @Override
+    public List<Vehicule> retournerVehiculesParTarifInferieur(BigDecimal tarif) {
+        return vehiculeRepository.findByTarifJournalierLessThan(tarif);
+    }
+
+    @Override
+    public List<Vehicule> retournerVehiculesParTarifSuperieurOuEgal(BigDecimal tarif) {
+        return vehiculeRepository.findByTarifJournalierGreaterThanEqual(tarif);
+    }
+
+    @Override
+    public List<Vehicule> retournerVehiculesParMarqueEtStatut(String marque, StatutVehicule statut) {
+        return vehiculeRepository.findByMarqueAndStatut(marque, statut);
+
+    }
+
+    @Override
+    public List<Vehicule> retournerVehiculesParCategories(List<CategorieVehicule> categories) {
+        return vehiculeRepository.findByCategorieIn(categories);
+    }
+
+    @Override
+    public List<Vehicule> retournerVehiculesParMarqueEtTarifInferieur(String marque, BigDecimal tarif) {
+        return vehiculeRepository.findByMarqueAndTarifJournalierLessThan(marque, tarif);
+
+    }
+
+    @Override
+    public List<Vehicule> retournerVehiculesDisponiblesParTarifCroissant() {
+        return vehiculeRepository.findByStatutOrderByTarifJournalierAsc(StatutVehicule.DISPONIBLE);
+    }
+
+    @Override
+    public List<Vehicule> retournerVehiculesParTarifDecroissant() {
+        return vehiculeRepository.findAllByOrderByTarifJournalierDesc();
+    }
+
     @Scheduled(fixedRate = 60000,initialDelay = 5000)
     public void actualiserEtatVehicule(){
         //Recuperation de tous les vehicules

@@ -3,10 +3,12 @@ package tn.esprit.autoloc.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.autoloc.domain.Reservation;
 import tn.esprit.autoloc.service.IReservationService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -49,6 +51,16 @@ public class ReservationController {
     public Reservation getReservationById(@PathVariable Long id)
     {
         return reservationService.afficherReservationById(id);
+    }
+
+    @GetMapping("/afficherParDateDebutApres/{date}")
+    public List<Reservation> afficherReservationsParDateDebutApres(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return reservationService.retournerReservationsParDateDebutApres(date);
+    }
+
+    @GetMapping("/afficherParDateFinAvant/{date}")
+    public List<Reservation> afficherReservationsParDateFinAvant(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return reservationService.retournerReservationsParDateFinAvant(date);
     }
 
 }

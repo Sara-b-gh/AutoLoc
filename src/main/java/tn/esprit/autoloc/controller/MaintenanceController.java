@@ -3,10 +3,12 @@ package tn.esprit.autoloc.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.autoloc.domain.Maintenance;
 import tn.esprit.autoloc.service.IMaintenanceService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -49,5 +51,16 @@ public class MaintenanceController {
     public Maintenance getMaintenanceById(@PathVariable Long id)
     {
         return maintenanceService.afficherMaintenanceById(id);
+    }
+
+    @GetMapping("/afficherEntreDeuxDates")
+    public List<Maintenance> afficherMaintenancesEntreDeuxDates(
+            @RequestParam
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateDebut,
+            @RequestParam
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFin) {
+
+        return maintenanceService.retournerMaintenancesEntreDeuxDates(
+                dateDebut, dateFin);
     }
 }

@@ -2,6 +2,7 @@ package tn.esprit.autoloc.service;
 
 import tn.esprit.autoloc.domain.Maintenance;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IMaintenanceService {
@@ -10,4 +11,5 @@ public interface IMaintenanceService {
     List<Maintenance> afficherToutesMaintenance();
     Maintenance afficherMaintenanceById(Long id);
     void supprimerMaintenance(Long id);
+    List<Maintenance> retournerMaintenancesEntreDeuxDates(LocalDate dateDebut, LocalDate dateFin);
 }

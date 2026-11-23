@@ -56,5 +56,16 @@ public class AgenceController {
         return agenceService.ajouterAgenceEtAffecterVehicules(agence);
     }
 
+    @GetMapping("/afficherParVille/{ville}")
+    public List<Agence> afficherAgencesParVille(@PathVariable String ville) {
+        return agenceService.retournerAgencesParVille(ville);
+    }
+
+    @GetMapping("/afficherParNomTerminePar/{nom}")
+    public List<Agence> afficherAgencesParNomTerminePar(
+            @PathVariable String nom) {
+        return agenceService.retournerAgencesParNomTerminePar(nom);
+    }
+
 
 }
